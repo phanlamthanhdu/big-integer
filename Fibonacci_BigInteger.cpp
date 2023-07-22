@@ -1,13 +1,9 @@
-/*###Begin banned keyword - each of the following line if appear in code will raise error. regex supported
-define
-include
-using
-###End banned keyword*/
 #include <bits/stdc++.h>
-
 using namespace std;
-
 //MAX_LONG_LONG = 9 223 372 036 854 775 807
+
+
+int lower_fence = 100'000'000'000'000'000;
 struct big_integer{
     vector <long long> data;
 
@@ -25,14 +21,14 @@ struct big_integer{
 
         while(i < x.data.size()){
             long long res = data[i] + x.data[i] + carry;
-            ans.data.push_back(res % 100'000'000'000'000'000);
-            carry = res / 100'000'000'000'000'000;
+            ans.data.push_back(res % lower_fence);
+            carry = res / lower_fence;
             i++;
         }
         while(i < data.size()){
             long long res = data[i] + carry;
-            ans.data.push_back(res % 100'000'000'000'000'000);
-            carry = res / 100'000'000'000'000'000;
+            ans.data.push_back(res % lower_fence);
+            carry = res / lower_fence;
             i++;
         }
         if(carry) ans.data.push_back(carry);
@@ -40,7 +36,7 @@ struct big_integer{
     }
     void output(){
         for(int i(data.size()-1); i >= 0; i--){
-            if(data[i] < 10'000'000'000'000'000 && i != data.size()-1)
+            if(data[i] < lower_fence && i != data.size()-1)
                 for(int j{0}; j < 16-(int)log10(data[i]); j++) 
                     cout << 0;
             cout << data[i];
@@ -48,8 +44,7 @@ struct big_integer{
     }
 };
 
-int main()
-{
+int main(){
 	big_integer f1 = 1, f2 = 1;
 	int n;
 	cin >> n;
