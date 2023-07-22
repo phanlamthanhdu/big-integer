@@ -2,7 +2,6 @@
 using namespace std;
 //MAX_LONG_LONG = 9 223 372 036 854 775 807
 
-
 int lower_fence = 100'000'000'000'000'000;
 struct big_integer{
     vector <long long> data;
